@@ -1,0 +1,27 @@
+---
+services:
+  ipv6-prefix-manager:
+      build: .
+      container_name: ipv6-prefix-manager
+      restart: unless-stopped
+      depends_on:
+        - mysql
+      volumes:
+        - ./config.yaml:/app/config.yaml
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql_server
+    environment:
+      MYSQL_ROOT_PASSWORD: radius
+      MYSQL_DATABASE: radius
+      MYSQL_USER: radius
+      MYSQL_PASSWORD: radius
+    ports:
+      - "3333:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./radius.sql:/docker-entrypoint-initdb.d/radius.sql
+
+volumes:
+  mysql_data:

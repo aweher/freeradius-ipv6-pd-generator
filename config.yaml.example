@@ -1,0 +1,13 @@
+---
+database:
+  host: "localhost"
+  user: "radius"
+  port: 3306
+  password: "radius"
+  database: "radius"
+
+revocation_period_days: 90
+
+prefixes:
+  - parent_prefix: "2001:db8:c000::/34"
+    delegation_length: 48
